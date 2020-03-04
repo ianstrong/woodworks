@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login Page</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <button (click)="login = true; register = false">Login</button> | <button
+    (click)="login=false;register=true">Register</button>
+
+  <form *ngIf="login" (submit)="Login($event)">
+    <h5>Log In Form</h5>
+    <label for="username">username: </label>
+    <input type="text" id="username" />
+    <br>
+    <label for="password">password: </label>
+    <input type="password" id="password" />
+    <input type="submit" value="submit">
+  </form>
+
+
+  <form *ngIf="register" (submit)="Register($event)">
+    <h5>Register Form</h5>
+    <br>
+    <label for="fullName">fullName:</label>
+    <input type="text" id="fullName" />
+    <br>
+    <label for="email">email address:</label>
+    <input type="text" id="email" />
+    <br>
+    <label for="password">password:</label>
+    <input type="password" id="password" />
+    <br>
+    <label for="birthday">birthday:</label>
+    <input type="text" id="birthday" />
+    <br>
+    <label for="age">age:</label>
+    <input type="text" id="age" />
+    <br>
+    <label for="age">contactNumber:</label>
+    <input type="text" id="contactNumber" />
+    <input type="submit" value="submit">
+  </form>
+
+</ion-content>

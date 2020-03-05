@@ -10,9 +10,11 @@ export class UserService {
 
   constructor() { }
 
-  setUserDetails(userInfo) {
+  async setUserDetails(userInfo) {
     this.userInfo = userInfo;
+    console.log("i am set just now");
     this.token = userInfo.jwt;
+
   }
 
   getUserDetails() {

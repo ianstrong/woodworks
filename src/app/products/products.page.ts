@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-products',
@@ -8,12 +9,20 @@ import { NavController } from '@ionic/angular';
 })
 export class ProductsPage implements OnInit {
 
-  constructor(private nav: NavController) { }
+  products: any;
+
+  constructor(private ds: DataService) { }
 
   ngOnInit() {
+    this.getProducts();
   }
 
-  back() {
-    this.nav.back();
+  getProducts() {
+    this.ds.reqGet('/products').subscribe(successDetails => {
+      this.products = successDetails;
+    }, errorDetails => {
+      this.products = [];
+    });
   }
+
 }

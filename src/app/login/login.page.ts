@@ -16,11 +16,14 @@ export class LoginPage implements OnInit {
   constructor(private ds: DataService, private us: UserService, private nav: NavController) { }
 
   ngOnInit() {
-    const userDetails = JSON.parse(localStorage.getItem('woodworks_userdetails'));
-    if (userDetails != null) {
-      alert('you are alread logged in');
-      this.nav.navigateForward('/products');
-    }
+    // const userDetails = JSON.parse(localStorage.getItem('woodworks_userdetails'));
+    // console.log('login', userDetails);
+    // if (userDetails != null) {
+    //   this.us.setUserDetails(JSON.stringify(userDetails)).then(() => {
+    //     alert('you are already logged in');
+    //     this.nav.navigateForward('/products');
+    //   });
+    // }
   }
 
   Register(e) {
@@ -34,8 +37,11 @@ export class LoginPage implements OnInit {
     this.ds.auth('/auth/local/register', body.toString()).subscribe(
       successDetails => {
         localStorage.setItem('woodworks_userdetails', JSON.stringify(successDetails));
-        this.us.setUserDetails(successDetails);
-        alert('register success');
+        this.us.setUserDetails(successDetails).then(() => {
+          alert('register success');
+          this.nav.navigateForward('/products');
+        });
+
       },
       errorDetails => {
         alert('Error code: ' + errorDetails.error.statusCode);
@@ -53,8 +59,12 @@ export class LoginPage implements OnInit {
     this.ds.auth('/auth/local', body.toString()).subscribe(
       successDetails => {
         localStorage.setItem('woodworks_userdetails', JSON.stringify(successDetails));
-        this.us.setUserDetails(successDetails);
-        alert('login success');
+        this.us.setUserDetails(successDetails).then(() => {
+
+          alert('login success');
+          this.nav.navigateForward('/products');
+        });
+
       },
       errorDetails => {
         alert('Error code: ' + errorDetails.error.statusCode);

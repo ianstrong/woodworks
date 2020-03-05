@@ -10,4 +10,16 @@
 
 <ion-content>
 
+  <div class="row">
+    <div class="card" *ngFor="let product of products">
+
+      <img src="https://woodworks-api.herokuapp.com{{ product.images[0].url}}" width="50%" />
+      <br>
+      <strong>{{ product.name}}</strong>
+      <p>{{ product.price }} Php.
+      </p>
+    </div>
+
+  </div>
+
 </ion-content>

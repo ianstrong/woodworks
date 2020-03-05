@@ -11,8 +11,18 @@ export class DataService {
 
   apiLink = 'https://woodworks-api.herokuapp.com';
 
-  getrequest(url: string) {
-    return this.http.get(url);
+  reqGet(url: string) {
+    return this.http.get(
+      this.apiLink + url,
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          // 'Authorization': 'Bearer ' + this.us.getTokenDetails()
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTgzMzAyNjU3LCJleHAiOjE1ODU4OTQ2NTd9.Qzscg2YD4BMOmye7Yj4EKmMMlAV8S3UBkDPU8XnQ5PI'
+        }
+
+      }
+    );
   }
 
 
@@ -23,13 +33,12 @@ export class DataService {
       {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          'Authorization': 'Bearer ' + this.us.getTokenDetails()
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNTgzMzAyNjU3LCJleHAiOjE1ODU4OTQ2NTd9.Qzscg2YD4BMOmye7Yj4EKmMMlAV8S3UBkDPU8XnQ5PI'
         }
+
       }
     );
   }
-
-
 
   auth(url, body) {
     try {
